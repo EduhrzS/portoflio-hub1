@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortfolioHUB - Seu Nome</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 2rem;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #999;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.8;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        /* Resume Section */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .resume-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .resume-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-item h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .date {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: var(--bg-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation utilities */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo" onerror="this.style.display='none';">
+                PortfolioHUB
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#resume">Currículo</a></li>
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#testimonials">Recomendações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-img">
+                <img src="c:/Users/eduhr/OneDrive/Imagens/images/perfil_usuario.jpg" alt="Eduardo Santiago R. de O. Carvalho" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
+            </div>
+            <h1>Eduardo Santiago R. de O. Carvalho</h1>
+            <p class="hero-subtitle">Estudante de Ciência da Computação | Desenvolvedor em Formação</p>
+            <p class="hero-description">
+                Apaixonado por tecnologia e inovação, busco constantemente aprender e aplicar novos conhecimentos 
+                em projetos desafiadores. Focado em desenvolvimento de soluções criativas e eficientes.
+            </p>
+            <a href="#about" class="cta-button">Conheça Meu Trabalho</a>
+        </div>
+    </section>
+
+        <!-- YouTube Apresentação -->
+        <section id="youtube-presentation" class="youtube-presentation" style="background: #fff; padding: 2rem 0;">
+            <div class="container" style="text-align: center;">
+                <h2 class="section-title">Minha Apresentação em Vídeo</h2>
+                <div style="margin-bottom: 1rem;">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/o-jMCJEK1uM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <p style="max-width: 600px; margin: 0 auto; color: #333; font-size: 1.1rem;">Este vídeo é a minha apresentação pessoal, onde compartilho um pouco sobre minha trajetória, interesses e objetivos profissionais. Assista para me conhecer melhor!</p>
+            </div>
+        </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Perfil Pessoal</h2>
+            <div class="about-content">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>eduhrzz@outlook.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>linkedin.com/in/eduardo-santiago-ribeiro-de-oliveira-carvalho-b509a8378</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <span>github.com/EduhrzS</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(92) 98450-6235</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Manaus, Amazonas</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>
+                        Olá! Sou um estudante dedicado e apaixonado por tecnologia, atualmente cursando Ciência da Computação 
+                        no CEUB. Desde cedo, desenvolvi um forte interesse por programação e inovação, 
+                        o que me motivou a buscar constantemente novos desafios e oportunidades de aprendizado.
+                    </p>
+                    <p>
+                        Durante minha jornada acadêmica, tenho me dedicado a projetos que combinam criatividade e 
+                        técnica, sempre buscando soluções eficientes e inovadoras. Acredito que a tecnologia tem 
+                        o poder de transformar vidas e negócios, e estou comprometido em fazer parte dessa transformação.
+                    </p>
+                    <p>
+                        Estou sempre em busca de oportunidades para aplicar meus conhecimentos em projetos reais, 
+                        colaborar com equipes talentosas e contribuir para o desenvolvimento de soluções que 
+                        façam a diferença no mundo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="resume">
+        <div class="container">
+            <h2 class="section-title">Currículo</h2>
+            <div class="resume-grid">
+                <div class="resume-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Formação Acadêmica</h3>
+                    <div class="timeline-item">
+                        <h4>Bacharelado em Ciência da Computação</h4>
+                        <p class="date">2025 - Presente</p>
+                        <p>CEUB - Cursando</p>
+                        <p>Principais disciplinas: Programação, Estruturas de Dados, Banco de Dados, Engenharia de Software.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Ensino Médio Completo</h4>
+                        <p class="date">2021 - 2024</p>
+                        <p>Escola Estadual Senador Petrônio Portella</p>
+                        <p>Ensino geral.</p>
+                    </div>
+                </div>
+
+                <div class="resume-card">
+                    <h3><i class="fas fa-briefcase"></i> Experiência Profissional</h3>
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-briefcase" style="font-size: 3rem; color: var(--primary-color); opacity: 0.3; margin-bottom: 1rem; display: block;"></i>
+                        <p style="color: var(--text-light); font-style: italic; margin-bottom: 1rem;">
+                            Ainda não possuo experiência profissional formal
+                        </p>
+                        <p style="color: var(--primary-color); font-size: 0.9rem; font-weight: 500;">
+                            Em busca de oportunidades de estágio e primeiro emprego
+                        </p>
+                    </div>
+                </div>
+
+                <div class="resume-card">
+                    <h3><i class="fas fa-certificate"></i> Certificações</h3>
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-graduation-cap" style="font-size: 3rem; color: var(--primary-color); opacity: 0.3; margin-bottom: 1rem; display: block;"></i>
+                        <p style="color: var(--text-light); font-style: italic; margin-bottom: 1rem;">
+                            Ainda não possuo certificações formais
+                        </p>
+                        <p style="color: var(--primary-color); font-size: 0.9rem; font-weight: 500;">
+                            Em busca de novas qualificações
+                        </p>
+                    </div>
+                </div>
+
+                <div class="resume-card">
+                    <h3><i class="fas fa-language"></i> Idiomas</h3>
+                    <div class="timeline-item">
+                        <h4>Português</h4>
+                        <p>Nativo</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Inglês</h4>
+                        <p>Intermediário/Avançado</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Espanhol</h4>
+                        <p>Básico</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projetos Acadêmicos e Profissionais</h2>
+            <div style="text-align: center; padding: 4rem 2rem;">
+                <div style="background: white; padding: 3rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); max-width: 600px; margin: 0 auto;">
+                    <i class="fas fa-rocket" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 2rem; display: block;"></i>
+                    <h3 style="color: var(--text-dark); margin-bottom: 1.5rem; font-size: 1.8rem;">Em Desenvolvimento</h3>
+                    <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+                        Ainda não desenvolvi um projeto profissional, mas estou constantemente aprendendo e me preparando para criar soluções inovadoras. 
+                        Em breve, esta seção será atualizada com meus primeiros projetos acadêmicos e profissionais.
+                    </p>
+                    <p style="color: var(--primary-color); font-weight: 600; font-size: 1rem;">
+                        Acompanhe meu progresso através do meu GitHub e LinkedIn!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Habilidades e Competências</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Linguagens de Programação</h3>
+                    <ul class="skill-list">
+                        <li>SQL</li>
+                        <li>Python</li>
+                        <li>C++</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Frameworks & Bibliotecas</h3>
+                    <ul class="skill-list">
+                        <li>React/React Native</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Banco de Dados</h3>
+                    <ul class="skill-list">
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Ferramentas & DevOps</h3>
+                    <ul class="skill-list">
+                        <li>Git/GitHub</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+                    
